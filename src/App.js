@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Landing from './components/Landing/Landing';
+import { Navigation } from './components/Navigation/Navigation';
+import { PoemPage } from './components/Poem/Poem';
+import { PoemFormPage } from './components/PoemForm/PoemForm';
+import TableOfContents from './components/TableOfContents/TableOfContents';
+import * as ROUTES from './constants/routes';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app">
+        <Navigation />
+        <div className="page">
+          <Route path={ROUTES.LANDING} exact component={Landing} />
+          <Route path="/poem/:poemId" render={PoemPage} />
+          <Route path={ROUTES.POEMFORM} component={PoemFormPage} />
+        </div>
+      </div>
+    </Router>
   );
 }
 

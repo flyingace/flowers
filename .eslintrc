@@ -1,0 +1,96 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "16.4"
+    },
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "node_modules",
+          "src",
+          "src/components",
+          "src/actions",
+          "src/containers",
+          "src/reducers",
+          "src/selectors",
+          "./"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "arrow-parens": "off",
+    "arrow-body-style": "off",
+    "comma-dangle": [
+      "error",
+      "always-multiline",
+      {
+        "functions": "ignore"
+      }
+    ],
+    "comma-style": [
+      "error",
+      "last"
+    ],
+    "consistent-return": "off",
+    "function-paren-newline": "off",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "no-case-declarations": "off",
+    "no-mixed-operators": "warn",
+    "no-plusplus": "off",
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "__REDUX_DEVTOOLS_EXTENSION__"
+        ]
+      }
+    ],
+    "no-unused-vars": "error",
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": false,
+        "variables": true
+      }
+    ],
+    "no-useless-constructor": "warn",
+    "object-curly-newline": [
+      "error",
+      {
+        "consistent": true
+      }
+    ],
+    "one-var": "off",
+    "operator-linebreak": "off",
+    "padded-blocks": "off",
+    "prefer-destructuring": "warn",
+    "react/forbid-prop-types": "warn",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/jsx-wrap-multilines": "off",
+    "react/prefer-stateless-function": "off",
+    "react/sort-comp": "warn",
+    "spaced-comment": "off"
+  }
+}

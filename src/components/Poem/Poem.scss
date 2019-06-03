@@ -1,0 +1,27 @@
+.poem {
+  padding: 2em 0 8em;
+  text-align: left;
+
+  .poem-number {
+    margin-bottom: 0.5em;
+    font-family: 'Petrona', 'Times New Roman', serif;
+    font-size: 1.4em;
+    text-align: center;
+  }
+
+  .poem-title {
+    margin-bottom: 0.8em;
+    font-family: 'Petrona', 'Times New Roman', serif;
+    font-size: 1.8em;
+    text-align: center;
+  }
+
+  .poem-body {
+    .poem-line {
+      margin-left: 5em;
+      line-height: 1.4em;
+      text-indent: -5em;
+      white-space: pre-wrap;
+    }
+  }
+}
