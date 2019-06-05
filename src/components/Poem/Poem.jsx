@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './Poem.scss';
-import { withFirebase } from '../Firebase';
 
-export const PoemPage = withFirebase(Poem);
-
-function Poem(props) {
+const PoemPage = (props) => {
   const [poemNumber, setPoemNumber] = useState('');
   const [poemTitle, setPoemTitle] = useState('');
   const [poemSubTitle, setPoemSubTitle] = useState('');
@@ -54,7 +51,9 @@ function Poem(props) {
       <PoemBody>{generatePoemBody()}</PoemBody>
     </div>
   );
-}
+};
+
+export default PoemPage;
 
 export const Title = ({ children }) => {
   return <div className="poem-title">{children}</div>;

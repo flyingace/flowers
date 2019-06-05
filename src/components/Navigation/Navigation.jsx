@@ -3,26 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { map as _map } from 'lodash';
 import * as ROUTES from '../../constants/routes';
-import { withFirebase } from '../Firebase';
 import './Navigation.scss';
 
-export const Navigation = withFirebase(Nav);
-
-/* Navigation */
-function Nav(props) {
-  const { firebase } = props;
+const Navigation = (props) => {
   const [poemsData, setPoemsData] = useState(null);
-
-  useEffect(() => {
-    firebase
-      .poemsData()
-      .once('value')
-      .then((snapshot) => {
-        console.log(Object.keys(snapshot.val()));
-        setPoemsData(snapshot.val());
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const createPoemLinks = () => {
     // console.log(Object.keys(poemsData));
@@ -55,13 +39,11 @@ function Nav(props) {
       </ul>
     </nav>
   );
-}
-
-Nav.propTypes = {
-  firebase: PropTypes.objectOf(PropTypes.any),
 };
 
-Nav.defaultProps = {
-  firebase: {},
-};
+export default Navigation;
+
+Navigation.propTypes = {};
+
+Navigation.defaultProps = {};
 /* */
