@@ -1,5 +1,9 @@
+/* eslint no-param-reassign: off */
+/* eslint no-use-before-define: off */
+
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { camelCase } from 'lodash';
 import './PoemForm.scss';
 
@@ -14,21 +18,51 @@ const PoemForm = (props) => {
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    const pbArray = poemBody.current.value.split(/\r?\n/g);
+    const pbArray = convertBodyToArray(poemBody.current.value);
     const poemId = camelCase(title.current.value);
-    console.log(number, title, frenchTitle, pbArray);
-    // .poem(poemId)
-    // .set({
-    //   poemNumber: number.current.value,
-    //   poemTitle: title.current.value,
-    //   poemSubTitle: subTitle.current.value,
-    //   poemTitleFrench: frenchTitle.current.value,
-    //   poemDedication: dedication.current.value,
-    //   poemEpigram: epigram.current.value,
-    //   poemBody: pbArray,
-    // })
-    // .then((resp) => console.log(resp))
-    // .catch((err) => console.error(err));
+    axios
+      .post(
+        'http://flowersofbad.herokuapp.com/api/poems',
+        {
+          poemNumber: number.current.value,
+          poemTitle: title.current.value,
+          poemSubTitle: subTitle.current.value,
+          poemTitleFrench: frenchTitle.current.value,
+          poemDedication: dedication.current.value,
+          poemEpigram: epigram.current.value,
+          poemBody: pbArray,
+          poemId,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then(() => resetForm())
+      .catch((err) => console.error(err));
+  };
+
+  const resetForm = () => {
+    [
+      number,
+      title,
+      subTitle,
+      frenchTitle,
+      dedication,
+      epigram,
+      poemBody,
+    ].forEach((fieldRef) => {
+      fieldRef.current.value = '';
+    });
+  };
+
+  const convertBodyToArray = (poemBodyAsLongString) => {
+    const poemBodyAsArray = poemBodyAsLongString.split(/\r?\n/g);
+    const twoOrMoreSpaces = /( ){2,}/g;
+    return poemBodyAsArray.map((line) => {
+      return line.replace(twoOrMoreSpaces, ' ').trim();
+    });
   };
 
   return (
@@ -62,12 +96,14 @@ const PoemForm = (props) => {
         <textarea
           id="poemBody"
           name="poemBody"
-          rows="24"
+          rows="16"
           cols="33"
           ref={poemBody}
         />
         <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
+        <button type="reset" onClick={resetForm}>
+          Reset
+        </button>
       </form>
     </div>
   );
