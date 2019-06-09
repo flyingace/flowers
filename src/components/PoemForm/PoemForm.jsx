@@ -1,9 +1,8 @@
 /* eslint no-param-reassign: off */
 /* eslint no-use-before-define: off */
 
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import { camelCase } from 'lodash';
 import './PoemForm.scss';
 
@@ -15,32 +14,24 @@ const PoemForm = (props) => {
   const dedication = useRef(null);
   const epigram = useRef(null);
   const poemBody = useRef(null);
+  const { addPoem } = props;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
     const pbArray = convertBodyToArray(poemBody.current.value);
     const poemId = camelCase(title.current.value);
-    axios
-      .post(
-        'http://flowersofbad.herokuapp.com/api/poems',
-        {
-          poemNumber: number.current.value,
-          poemTitle: title.current.value,
-          poemSubTitle: subTitle.current.value,
-          poemTitleFrench: frenchTitle.current.value,
-          poemDedication: dedication.current.value,
-          poemEpigram: epigram.current.value,
-          poemBody: pbArray,
-          poemId,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      .then(() => resetForm())
-      .catch((err) => console.error(err));
+    const poemData = {
+      poemNumber: number.current.value,
+      poemTitle: title.current.value,
+      poemSubTitle: subTitle.current.value,
+      poemTitleFrench: frenchTitle.current.value,
+      poemDedication: dedication.current.value,
+      poemEpigram: epigram.current.value,
+      poemBody: pbArray,
+      poemId,
+    };
+
+    addPoem(poemData);
   };
 
   const resetForm = () => {
@@ -111,7 +102,9 @@ const PoemForm = (props) => {
 
 export default PoemForm;
 
-PoemForm.propTypes = {};
+PoemForm.propTypes = {
+  addPoem: PropTypes.func.isRequired,
+};
 
 PoemForm.defaultProps = {};
 /* */

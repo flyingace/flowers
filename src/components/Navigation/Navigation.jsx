@@ -28,7 +28,7 @@ const Navigation = (props) => {
         </li>
         {createPoemLinks()}
         <li>
-          <Link to="/poem/ember">PoemById</Link>
+          <Link to={ROUTES.POEM}>PoemById</Link>
         </li>
         <li>
           <Link to={ROUTES.TOC}>Table of Contents</Link>

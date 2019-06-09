@@ -2,35 +2,27 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './Poem.scss';
 
-const PoemPage = (props) => {
-  const [poemNumber, setPoemNumber] = useState('');
-  const [poemTitle, setPoemTitle] = useState('');
-  const [poemSubTitle, setPoemSubTitle] = useState('');
-  const [poemDedication, setPoemDedication] = useState('');
-  const [poemEpigram, setPoemEpigram] = useState('');
-  const [poemBody, setPoemBody] = useState([]);
-  const { firebase, match } = props;
+const Poem = (props) => {
+  const {
+    poems,
+    getPoemById,
+    poemBody,
+    poemDedication,
+    poemEpigram,
+    poemNumber,
+    poemSubTitle,
+    poemTitle,
+    requestAllPoems,
+  } = props;
 
   useEffect(() => {
-    const { poemId } = match.params;
-
-    firebase
-      .poem(poemId)
-      .once('value')
-      .then((snapshot) => {
-        setPoemSubTitle(snapshot.val().poemSubtitle);
-        setPoemDedication(snapshot.val().poemDedication);
-        setPoemEpigram(snapshot.val().poemEpigram);
-        setPoemBody(snapshot.val().poemBody);
-      });
-    firebase
-      .poemData(poemId)
-      .once('value')
-      .then((snapshot) => {
-        setPoemNumber(snapshot.val().poemNumber);
-        setPoemTitle(snapshot.val().poemTitle);
-      });
-  }, []);
+    if (poems.length === 0) {
+      requestAllPoems();
+    } else {
+      console.log('hello?');
+      getPoemById('5cf88b3e88793d0017780a58');
+    }
+  }, [poems]);
 
   const generatePoemBody = () => {
     return poemBody.map((line, idx) => {
@@ -53,7 +45,25 @@ const PoemPage = (props) => {
   );
 };
 
-export default PoemPage;
+Poem.propTypes = {
+  getPoemById: PropTypes.func.isRequired,
+  poemBody: PropTypes.arrayOf(PropTypes.string).isRequired,
+  poemDedication: PropTypes.string,
+  poemEpigram: PropTypes.string,
+  poemNumber: PropTypes.string,
+  poemSubTitle: PropTypes.string,
+  poemTitle: PropTypes.string.isRequired,
+  requestAllPoems: PropTypes.func.isRequired,
+};
+
+Poem.defaultProps = {
+  poemDedication: '',
+  poemEpigram: '',
+  poemNumber: '',
+  poemSubTitle: '',
+};
+
+export default Poem;
 
 export const Title = ({ children }) => {
   return <div className="poem-title">{children}</div>;
