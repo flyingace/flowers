@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import * as PoemsActions from '../_actions/PoemsActions';
 import Poem from '../components/Poem/Poem';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    poems: state.PoemData.poems,
-    targetPoem: state.PoemData.targetPoem,
-    poemNumber: state.PoemData.targetPoem.poemNumber,
-    poemTitle: state.PoemData.targetPoem.poemTitle,
-    poemSubTitle: state.PoemData.targetPoem.poemSubTitle,
+    poemId: ownProps.match.params.poemId,
+    poemBody: state.PoemData.targetPoem.poemBody,
     poemDedication: state.PoemData.targetPoem.poemDedication,
     poemEpigram: state.PoemData.targetPoem.poemEpigram,
-    poemBody: state.PoemData.targetPoem.poemBody,
+    poemNumber: state.PoemData.targetPoem.poemNumber,
+    poems: state.PoemData.poems,
+    poemSubTitle: state.PoemData.targetPoem.poemSubTitle,
+    poemTitle: state.PoemData.targetPoem.poemTitle,
+    targetPoem: state.PoemData.targetPoem,
   };
 }
 
