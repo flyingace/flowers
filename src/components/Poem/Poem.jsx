@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Poem.scss';
 
 const Poem = (props) => {
   const {
-    poems,
     getPoemById,
     poemBody,
     poemDedication,
     poemEpigram,
+    poemId,
     poemNumber,
+    poems,
     poemSubTitle,
     poemTitle,
     requestAllPoems,
@@ -19,10 +20,9 @@ const Poem = (props) => {
     if (poems.length === 0) {
       requestAllPoems();
     } else {
-      console.log('hello?');
-      getPoemById('5cf88b3e88793d0017780a58');
+      getPoemById(poemId);
     }
-  }, [poems]);
+  }, [getPoemById, poemId, poems, requestAllPoems]);
 
   const generatePoemBody = () => {
     return poemBody.map((line, idx) => {
@@ -47,10 +47,13 @@ const Poem = (props) => {
 
 Poem.propTypes = {
   getPoemById: PropTypes.func.isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
   poemBody: PropTypes.arrayOf(PropTypes.string).isRequired,
   poemDedication: PropTypes.string,
   poemEpigram: PropTypes.string,
+  poemId: PropTypes.string,
   poemNumber: PropTypes.string,
+  poems: PropTypes.arrayOf(PropTypes.object).isRequired,
   poemSubTitle: PropTypes.string,
   poemTitle: PropTypes.string.isRequired,
   requestAllPoems: PropTypes.func.isRequired,
@@ -59,6 +62,7 @@ Poem.propTypes = {
 Poem.defaultProps = {
   poemDedication: '',
   poemEpigram: '',
+  poemId: 'benediction',
   poemNumber: '',
   poemSubTitle: '',
 };

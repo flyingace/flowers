@@ -28,10 +28,10 @@ function addAllPoems(poems) {
   };
 }
 
-export function getPoemById(id = '5cf882dd88793d0017780a54') {
+export function getPoemById(poemId) {
   return (dispatch, getState) => {
     const targetPoem = getState().PoemData.poems.find(
-      (poem) => poem._id === id
+      (poem) => poem.poemId === poemId
     );
 
     if (targetPoem) {
