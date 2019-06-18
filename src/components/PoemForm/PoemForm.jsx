@@ -7,42 +7,59 @@ import { camelCase } from 'lodash';
 import './PoemForm.scss';
 
 const PoemForm = (props) => {
-  const number = useRef(null);
-  const title = useRef(null);
-  const subTitle = useRef(null);
-  const frenchTitle = useRef(null);
-  const dedication = useRef(null);
-  const epigram = useRef(null);
-  const poemBody = useRef(null);
-  const { addPoem } = props;
+  const numberField = useRef(null);
+  const titleField = useRef(null);
+  const subTitleField = useRef(null);
+  const frenchTitleField = useRef(null);
+  const dedicationField = useRef(null);
+  const epigramField = useRef(null);
+  const poemBodyField = useRef(null);
+  const {
+    addPoem,
+    edit,
+    updatePoem,
+    _id,
+    poemBody,
+    poemDedication,
+    poemEpigram,
+    poemNumber,
+    poemSubTitle,
+    poemTitleFrench,
+    poemTitle,
+  } = props;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
-    const pbArray = convertBodyToArray(poemBody.current.value);
-    const poemId = camelCase(title.current.value);
+    const pbArray = convertBodyToArray(poemBodyField.current.value);
+    const poemId = camelCase(titleField.current.value);
     const poemData = {
-      poemNumber: number.current.value,
-      poemTitle: title.current.value,
-      poemSubTitle: subTitle.current.value,
-      poemTitleFrench: frenchTitle.current.value,
-      poemDedication: dedication.current.value,
-      poemEpigram: epigram.current.value,
+      _id,
       poemBody: pbArray,
+      poemDedication: dedicationField.current.value,
+      poemEpigram: epigramField.current.value,
+      poemNumber: numberField.current.value,
+      poemSubTitle: subTitleField.current.value,
+      poemTitle: titleField.current.value,
+      poemTitleFrench: frenchTitleField.current.value,
       poemId,
     };
 
-    addPoem(poemData);
+    if (!edit) {
+      addPoem(poemData);
+    } else {
+      updatePoem(_id, poemData);
+    }
   };
 
   const resetForm = () => {
     [
-      number,
-      title,
-      subTitle,
-      frenchTitle,
-      dedication,
-      epigram,
-      poemBody,
+      numberField,
+      titleField,
+      subTitleField,
+      frenchTitleField,
+      dedicationField,
+      epigramField,
+      poemBodyField,
     ].forEach((fieldRef) => {
       fieldRef.current.value = '';
     });
@@ -51,37 +68,83 @@ const PoemForm = (props) => {
   const convertBodyToArray = (poemBodyAsLongString) => {
     const poemBodyAsArray = poemBodyAsLongString.split(/\r?\n/g);
     const twoOrMoreSpaces = /( ){2,}/g;
+    const startItalic = /(<em>)/g;
+    const endItalic = /(<\/em>)/g;
     return poemBodyAsArray.map((line) => {
-      return line.replace(twoOrMoreSpaces, ' ').trim();
+      const l = line
+        .replace(twoOrMoreSpaces, ' ')
+        .replace(startItalic, '\u003Cem\u003E')
+        .replace(endItalic, '\u003C\u002Fem\u003E')
+        .trim();
+      console.log(l);
+      return l;
     });
   };
+
+  const convertArrayToBody = (poemBodyAsArray) => {
+    if (poemBodyAsArray.length > 0) {
+      return poemBodyAsArray.reduce((a, b) => {
+        return a + '\u000A' + b.toString();
+      });
+    }
+
+    return '';
+  };
+
+  const buttonLabel = edit ? 'Update' : 'Submit';
 
   return (
     <div className="poem-form">
       <h2>Poem</h2>
-      <form onSubmit={onSubmit}>
+      <form>
         <label htmlFor="number">Number</label>
-        <input type="text" id="number" name="number" ref={number} />
+        <input
+          type="text"
+          id="number"
+          name="number"
+          ref={numberField}
+          defaultValue={poemNumber}
+        />
         <label htmlFor="title">Title</label>
-        <input type="text" id="title" name="title" ref={title} />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          ref={titleField}
+          defaultValue={poemTitle}
+        />
         <label htmlFor="subTitle">SubTitle</label>
-        <input type="text" id="subTitle" name="subTitle" ref={subTitle} />
+        <input
+          type="text"
+          id="subTitle"
+          name="subTitle"
+          ref={subTitleField}
+          defaultValue={poemSubTitle}
+        />
         <label htmlFor="title-french">Title (French)</label>
         <input
           type="text"
           id="title-french"
           name="title-french"
-          ref={frenchTitle}
+          ref={frenchTitleField}
+          defaultValue={poemTitleFrench}
         />
         <label htmlFor="dedication">Dedication</label>
-        <input type="text" id="dedication" name="dedication" ref={dedication} />
+        <input
+          type="text"
+          id="dedication"
+          name="dedication"
+          ref={dedicationField}
+          defaultValue={poemDedication}
+        />
         <label htmlFor="epigram">Epigram</label>
         <textarea
           id="epigram"
           name="epigram"
           rows="3"
           cols="33"
-          ref={epigram}
+          ref={epigramField}
+          defaultValue={poemEpigram}
         />
         <label htmlFor="poemBody">Poem Body</label>
         <textarea
@@ -89,9 +152,12 @@ const PoemForm = (props) => {
           name="poemBody"
           rows="16"
           cols="33"
-          ref={poemBody}
+          ref={poemBodyField}
+          defaultValue={convertArrayToBody(poemBody)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={onSubmit}>
+          {buttonLabel}
+        </button>
         <button type="reset" onClick={resetForm}>
           Reset
         </button>
@@ -104,7 +170,27 @@ export default PoemForm;
 
 PoemForm.propTypes = {
   addPoem: PropTypes.func.isRequired,
+  updatePoem: PropTypes.func.isRequired,
+  edit: PropTypes.bool,
+  _id: PropTypes.string,
+  poemBody: PropTypes.arrayOf(PropTypes.string),
+  poemDedication: PropTypes.string,
+  poemTitleFrench: PropTypes.string,
+  poemEpigram: PropTypes.string,
+  poemNumber: PropTypes.string,
+  poemSubTitle: PropTypes.string,
+  poemTitle: PropTypes.string,
 };
 
-PoemForm.defaultProps = {};
+PoemForm.defaultProps = {
+  edit: false,
+  _id: '',
+  poemBody: [''],
+  poemDedication: '',
+  poemEpigram: '',
+  poemNumber: '',
+  poemSubTitle: '',
+  poemTitle: '',
+  poemTitleFrench: '',
+};
 /* */

@@ -3,10 +3,19 @@ import { connect } from 'react-redux';
 import * as PoemsActions from '../_actions/PoemsActions';
 import PoemForm from '../components/PoemForm/PoemForm';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    poems: state.PoemData.allPoems,
-    targetPoem: state.PoemData.targetPoem,
+    // eslint-disable-next-line no-underscore-dangle
+    _id: state.PoemData.targetPoem._id,
+    edit: ownProps.edit,
+    poemBody: state.PoemData.targetPoem.poemBody,
+    poemDedication: state.PoemData.targetPoem.poemDedication,
+    poemEpigram: state.PoemData.targetPoem.poemEpigram,
+    poemNumber: state.PoemData.targetPoem.poemNumber,
+    poems: state.PoemData.poems,
+    poemSubTitle: state.PoemData.targetPoem.poemSubTitle,
+    poemTitle: state.PoemData.targetPoem.poemTitle,
+    poemTitleFrench: state.PoemData.targetPoem.poemTitleFrench,
   };
 }
 
