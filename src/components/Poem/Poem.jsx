@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Poem.scss';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 
 const Poem = (props) => {
   const {
@@ -41,6 +43,7 @@ const Poem = (props) => {
       )}
       {poemEpigram && <div className="poem-epigram">{poemEpigram}</div>}
       <PoemBody>{generatePoemBody()}</PoemBody>
+      <Link to={ROUTES.POEMEDIT}>edit</Link>
     </div>
   );
 };

@@ -48,12 +48,29 @@ function setTargetPoem(targetPoem) {
 }
 
 export function addPoem(poemData) {
-  axios
-    .post('http://flowersofbad.herokuapp.com/api/poems', poemData, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then(() => requestAllPoems())
-    .catch((err) => console.log(err));
+  return (dispatch) => {
+    axios
+      .post('http://flowersofbad.herokuapp.com/api/poems', poemData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(() => {
+        dispatch(requestAllPoems());
+      })
+      .catch((err) => console.log(err));
+  };
+}
+
+export function updatePoem(poemId, poemData) {
+  return (dispatch) => {
+    axios
+      .put(`http://flowersofbad.herokuapp.com/api/poems/${poemId}`, poemData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(() => dispatch(requestAllPoems()))
+      .catch((err) => console.log(err));
+  };
 }

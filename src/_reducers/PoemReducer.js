@@ -10,6 +10,7 @@ const initialState = {
     poemNumber: '',
     poemSubTitle: '',
     poemTitle: '',
+    poemTitleFrench: '',
   },
 };
 
