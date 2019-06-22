@@ -1,1 +1,32 @@
 @import '../../styles/constants';
+
+.table-of-contents {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2em 3em 7em;
+  text-align: left;
+
+  h3.section-title {
+    font-family: 'Petrona', 'Times New Roman', serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 15px;
+
+    li {
+      font-family: 'Raleway', Tahoma, Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.4;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+  }
+}

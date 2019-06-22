@@ -22,11 +22,14 @@ const Navigation = (props) => {
     <nav>
       <ul>
         <li>
-          <Link to={ROUTES.LANDING}>Home</Link>
+          <Link to={ROUTES.LANDING}>Flowers of Bad</Link>
         </li>
-        {createPoemLinks()}
+        {/*{createPoemLinks()}*/}
         <li>
           <Link to={ROUTES.TOC}>Table of Contents</Link>
+        </li>
+        <li>
+          <Link to={ROUTES.DAVIDCAMERON}>David Cameron</Link>
         </li>
         <li>
           <Link to={ROUTES.POEMFORM}>Form</Link>

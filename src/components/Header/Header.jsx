@@ -8,7 +8,7 @@ export const Header = (props) => {
 
   return (
     <div className="header">
-      <h3>Flowers of Bad</h3>
+      <div className="title">Flowers of Bad</div>
     </div>
   );
 };

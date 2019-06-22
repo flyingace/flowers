@@ -1,28 +1,19 @@
 .app {
-  nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 15px 20px;
-    background-color: #eee;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #171b3c;
+  background-image: url('./assets/vine_pattern.svg');
+  background-size: 200px 500px;
+  background-repeat: repeat-y;
+  background-position: top 0 right -110px;
+  overflow-y: auto;
 
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-
-      li {
-        a {
-          color: #111;
-          text-decoration: none;
-        }
-      }
-    }
+  .page {
+    min-height: calc(100% - 40px);
+    margin: 0 100px 0 0;
+    background-color: #fff;
   }
-}
-
-.page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 3em;
 }
