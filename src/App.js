@@ -5,10 +5,10 @@ import LandingContainer from './_containers/LandingContainer';
 import NavigationContainer from './_containers/NavigationContainer';
 import PoemContainer from './_containers/PoemContainer';
 import PoemFormContainer from './_containers/PoemFormContainer';
-import TableOfContentsContainer from './_containers/TableOfContentsContainer';
+import TableOfContents from './components/TableOfContents/TableOfContents';
 import { requestAllPoems } from './_actions/PoemsActions';
+import { Bio } from './components/Bio/Bio';
 import './App.scss';
-import { Header } from './components/Header/Header';
 
 function App() {
   useEffect(() => {
@@ -23,17 +23,14 @@ function App() {
           exact
           render={() => <LandingContainer />}
         />
+        <NavigationContainer />
         <div className="page">
-          <NavigationContainer />
-          <Header />
           <Route
             path={ROUTES.POEM}
             render={(match) => <PoemContainer {...match} />}
           />
-          <Route
-            path={ROUTES.TOC}
-            render={() => <TableOfContentsContainer />}
-          />
+          <Route path={ROUTES.TOC} render={() => <TableOfContents />} />
+          <Route path={ROUTES.DAVIDCAMERON} render={() => <Bio />} />
           <Route path={ROUTES.POEMFORM} render={() => <PoemFormContainer />} />
           <Route
             path={ROUTES.POEMEDIT}
