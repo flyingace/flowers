@@ -10,10 +10,12 @@ const PoemForm = (props) => {
   const numberField = useRef(null);
   const titleField = useRef(null);
   const subTitleField = useRef(null);
+  const sectionSelect = useRef(null);
   const frenchTitleField = useRef(null);
   const dedicationField = useRef(null);
   const epigramField = useRef(null);
   const poemBodyField = useRef(null);
+  const poemIdField = useRef(null);
   const {
     addPoem,
     edit,
@@ -26,22 +28,25 @@ const PoemForm = (props) => {
     poemSubTitle,
     poemTitleFrench,
     poemTitle,
+    poemId,
   } = props;
 
   const onSubmit = (evt) => {
     evt.preventDefault();
     const pbArray = convertBodyToArray(poemBodyField.current.value);
-    const poemId = camelCase(titleField.current.value);
     const poemData = {
       _id,
       poemBody: pbArray,
       poemDedication: dedicationField.current.value,
       poemEpigram: epigramField.current.value,
       poemNumber: numberField.current.value,
+      poemSection: sectionSelect.current.value,
       poemSubTitle: subTitleField.current.value,
       poemTitle: titleField.current.value,
       poemTitleFrench: frenchTitleField.current.value,
-      poemId,
+      poemId: edit
+        ? poemIdField.current.value
+        : camelCase(titleField.current.value),
     };
 
     if (!edit) {
@@ -60,6 +65,8 @@ const PoemForm = (props) => {
       dedicationField,
       epigramField,
       poemBodyField,
+      poemIdField,
+      sectionSelect,
     ].forEach((fieldRef) => {
       fieldRef.current.value = '';
     });
@@ -76,7 +83,6 @@ const PoemForm = (props) => {
         .replace(startItalic, '\u003Cem\u003E')
         .replace(endItalic, '\u003C\u002Fem\u003E')
         .trim();
-      console.log(l);
       return l;
     });
   };
@@ -146,6 +152,23 @@ const PoemForm = (props) => {
           ref={epigramField}
           defaultValue={poemEpigram}
         />
+        <label htmlFor="epigram">Poem Id</label>
+        <input
+          id="poem-id"
+          name="poemId"
+          ref={poemIdField}
+          defaultValue={poemId}
+        />
+        <select id="section-select" ref={sectionSelect}>
+          <option value="">Section</option>
+          <option value="spleenEtIdeal">Spleen et Idéal</option>
+          <option value="tableauxParisiens">Tableaux Parisiens</option>
+          <option value="leVin">Le Vin</option>
+          <option value="fleursDuMal">Fleurs du Mal</option>
+          <option value="revolte">Revolte</option>
+          <option value="laMort">La Mort</option>
+          <option value="toTheReader">To The Reader</option>
+        </select>
         <label htmlFor="poemBody">Poem Body</label>
         <textarea
           id="poemBody"

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './Poem.scss';
 import { Link } from 'react-router-dom';
@@ -18,6 +18,8 @@ const Poem = (props) => {
     requestAllPoems,
   } = props;
 
+  const [isFading, setIsFading] = useState(false);
+
   useEffect(() => {
     if (poems.length === 0) {
       requestAllPoems();
@@ -26,6 +28,12 @@ const Poem = (props) => {
     }
   }, [getPoemById, poemId, poems, requestAllPoems]);
 
+  useEffect(() => {
+    if (poemTitle !== '') {
+      setIsFading(true);
+    }
+  }, [setIsFading, poemTitle]);
+
   const generatePoemBody = () => {
     return poemBody.map((line, idx) => {
       // eslint-disable-next-line react/no-array-index-key
@@ -33,15 +41,16 @@ const Poem = (props) => {
     });
   };
 
+  const poemClass = isFading ? 'poem fade-in' : 'poem';
   return (
-    <div className="poem">
+    <div className={poemClass}>
       <div className="poem-number">{poemNumber}</div>
       <Title>{poemTitle}</Title>
       {poemSubTitle && <div className="poem-subtitle">{poemSubTitle}</div>}
+      {poemEpigram && <div className="poem-epigram">{poemEpigram}</div>}
       {poemDedication && (
         <div className="poem-dedication">{poemDedication}</div>
       )}
-      {poemEpigram && <div className="poem-epigram">{poemEpigram}</div>}
       <PoemBody>{generatePoemBody()}</PoemBody>
       <Link to={ROUTES.POEMEDIT}>edit</Link>
     </div>
