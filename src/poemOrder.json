@@ -1,0 +1,316 @@
+[
+  { "id": "toTheReader1", "title": "To The Reader", "section": 0 },
+  { "id": "toTheReader2", "title": "To The Reader", "section": 0 },
+  { "sectionTitle": "Spleen Et Idéal" },
+  { "id": "benediction", "title": "Benediction", "section": 1 },
+  { "id": "theAlbatross", "title": "The Albatross", "section": 1 },
+  { "id": "ember", "title": "Ember", "section": 1 },
+  { "id": "correspondances", "title": "Correspondances", "section": 1 },
+  { "id": "blanche", "title": "Blanche", "section": 1 },
+  { "id": "hepSlears", "title": "Hep Slears", "section": 1 },
+  { "id": "theSickenedMuse", "title": "The Sickened Muse", "section": 1 },
+  { "id": "theVeneratedMuse", "title": "The Venerated Muse", "section": 1 },
+  { "id": "theLemonadeMan", "title": "The Lemonade Man", "section": 1 },
+  { "id": "toALoanShark", "title": "To A Loan Shark", "section": 1 },
+  { "id": "may", "title": "May (The guy gone)", "section": 1 },
+  {
+    "id": "thisAntiTerrorLife",
+    "title": "This Anti-Terror Life: III",
+    "section": 1
+  },
+  {
+    "id": "bohemiansTakeATrip",
+    "title": "Bohemians Take A Trip",
+    "section": 1
+  },
+  { "id": "manAndTheSea", "title": "Man & The Sea", "section": 1 },
+  {
+    "id": "donJuanInFurs",
+    "title": "Don Juan In Furs (what the fuck is mugissement?)",
+    "section": 1
+  },
+  {
+    "id": "chatimentDeLOrgueil",
+    "title": "Chatiment De L’Orgueil",
+    "section": 1
+  },
+  { "id": "beauty", "title": "Beauty", "section": 1 },
+  {
+    "id": "dateOfStradivarisDeath",
+    "title": "Date Of Stradivari’s Death",
+    "section": 1
+  },
+  { "id": "theGiant", "title": "The Giant", "section": 1 },
+  { "id": "theYoungGirls", "title": "The Young Girls", "section": 1 },
+  { "id": "amSequel", "title": "A.M. Sequel", "section": 1 },
+  {
+    "id": "songOfTheBoatShoes",
+    "title": "Song Of The Boat Shoes",
+    "section": 1
+  },
+  { "id": "parfumExotique", "title": "Parfum Exotique", "section": 1 },
+  { "id": "laChevalier", "title": "La Chevalier", "section": 1 },
+  {
+    "id": "xxiv",
+    "title": "XXIV (“I love you lawyers and your volatile dreams…”)",
+    "section": 1
+  },
+  {
+    "id": "xxv",
+    "title": "XXV (“You put the universe under your thumb…”)",
+    "section": 1
+  },
+  {
+    "id": "iSaidItsNotMarijuana",
+    "title": "I Said It’s Not Marijuana",
+    "section": 1
+  },
+  { "id": "iLikeTryptophan", "title": "I Like Tryptophan", "section": 1 },
+  { "id": "leSerpentQuiDanse", "title": "Le Serpent Qui Danse", "section": 1 },
+  { "id": "uneCharogne", "title": "Une Charogne", "section": 1 },
+  {
+    "id": "deProfundisClamavis",
+    "title": "De Profundis Clamavis",
+    "section": 1
+  },
+  { "id": "theVampire", "title": "The Vampire", "section": 1 },
+  { "id": "lethe", "title": "Lethe", "section": 1 },
+  { "id": "xxxii", "title": "XXXII (“One night in June…”)", "section": 1 },
+  { "id": "deadLetterOffice", "title": "Dead Letter Office", "section": 1 },
+  { "id": "theChat", "title": "The Chat", "section": 1 },
+  { "id": "ferYelluh", "title": "Fer Yelluh", "section": 1 },
+  { "id": "leBalcon", "title": "Le Balcon", "section": 1 },
+  { "id": "thePossessed", "title": "The Possessed", "section": 1 },
+  { "id": "hateMail", "title": "Hate Mail", "section": 1 },
+  {
+    "id": "xxxix",
+    "title": "XXXIX (“I give you a lake stocked with flying fish, named after a Spaniard…”)",
+    "section": 1
+  },
+  { "id": "earthQuakeMenu", "title": "Earth Quake Menu", "section": 1 },
+  { "id": "twoTonChair", "title": "Two Ton Chair", "section": 1 },
+  {
+    "id": "xlii",
+    "title": "XLII (“Poa traim driver, qut uor lesses, eu ice a ai…”)",
+    "section": 1
+  },
+  {
+    "id": "auntVivsBoyfriend",
+    "title": "Aunt Viv’s Boyfriend Lay Down In Flames",
+    "section": 1
+  },
+  {
+    "id": "aCelleQuiEstTropGaie",
+    "title": "A Celle Qui Est Trop Gaie",
+    "section": 1
+  },
+  { "id": "reversibilite", "title": "Réversibilité", "section": 1 },
+  { "id": "confession", "title": "Confession", "section": 1 },
+  { "id": "lAubeSpiritually", "title": "L’Aube Spiritually", "section": 1 },
+  { "id": "theTwoDarknesses", "title": "The Two Darknesses", "section": 1 },
+  { "id": "theFlask", "title": "The Flask", "section": 1 },
+  { "id": "lePoison", "title": "Le Poison", "section": 1 },
+  { "id": "cielBrouille", "title": "Ciel Brouillé", "section": 1 },
+  { "id": "leChat", "title": "Le Chat", "section": 1 },
+  {
+    "id": "liberate",
+    "title": "Liberate The Forward Thinkers! Freedom For The Straight And Narrow!",
+    "section": 1
+  },
+  {
+    "id": "infielderNever",
+    "title": "Infielder Never Tasted Life In The Bigs",
+    "section": 1
+  },
+  { "id": "erIrbralaple", "title": "Er Irbralaple", "section": 1 },
+  { "id": "checkroom", "title": "Checkroom", "section": 1 },
+  { "id": "songOfAutumn", "title": "Song Of Autumn", "section": 1 },
+  { "id": "toSantaClaus", "title": "To Santa Claus", "section": 1 },
+  { "id": "postMidnightSong", "title": "Post-Midnight Song", "section": 1 },
+  { "id": "theSinger", "title": "The Singer", "section": 1 },
+  {
+    "id": "franciscanLaunderers",
+    "title": "Franciscan Launderers",
+    "section": 1
+  },
+  { "id": "aWomanCriedOle", "title": "A Woman Cried Olé", "section": 1 },
+  { "id": "moestaAndErrabunda", "title": "Mœsta And Errabunda", "section": 1 },
+  { "id": "theRaven", "title": "The Raven", "section": 1 },
+  { "id": "sonnetDAutomne", "title": "Sonnet D’Automne", "section": 1 },
+  {
+    "id": "sadStories",
+    "title": "Sad Stories From The Surface Of The Moon",
+    "section": 1
+  },
+  { "id": "luxembourgsKitties", "title": "Luxembourg’s Kitties", "section": 1 },
+  { "id": "theFlightlessBirds", "title": "The Flightless Birds", "section": 1 },
+  { "id": "thePipe", "title": "The Pipe", "section": 1 },
+  {
+    "id": "theMuseIsDisgusted",
+    "title": "The Muse Is Disgusted But Crippled",
+    "section": 1
+  },
+  { "id": "lecturesOnSeppuku", "title": "Lectures On Seppuku", "section": 1 },
+  {
+    "id": "uneGravureFantastique",
+    "title": "Une Gravure Fantastique",
+    "section": 1
+  },
+  {
+    "id": "themDeadJoyOrSomeThem",
+    "title": "Them Dead Joy Or Some Them",
+    "section": 1
+  },
+  { "id": "deEndIsDeHen", "title": "De End Is De Hen", "section": 1 },
+  { "id": "theClockHasFallen", "title": "The Clock Has Fallen", "section": 1 },
+  { "id": "spleenlxxv", "title": "Spleen", "section": 1 },
+  { "id": "spleenlxxvi", "title": "Spleen", "section": 1 },
+  { "id": "spleenlxxvii", "title": "Spleen", "section": 1 },
+  { "id": "spleenlxxviii", "title": "Spleen", "section": 1 },
+  { "id": "obsession", "title": "Obsession", "section": 1 },
+  { "id": "theGhostOfCavemen", "title": "The Ghost Of Cavemen", "section": 1 },
+  {
+    "id": "alchemyOfTheDoofus",
+    "title": "Alchemy Of The Doofus",
+    "section": 1
+  },
+  { "id": "horreurSympathique", "title": "Horreur Sympathique", "section": 1 },
+  { "id": "theAutoMechanics", "title": "The Auto Mechanics", "section": 1 },
+  { "id": "lIrremediable", "title": "L’Irrémédiable", "section": 1 },
+  {
+    "id": "theLumberjacksWhore",
+    "title": "The Lumberjack’s Whore",
+    "section": 1
+  },
+  { "sectionTitle": "Tableaux Parisiens" },
+  {
+    "id": "holyPositionOfPlantStore",
+    "title": "Holy Position Of Plant Store",
+    "section": 2
+  },
+  { "id": "iWasSwimming", "title": "I Was Swimming", "section": 2 },
+  {
+    "id": "toYourRussian",
+    "title": "To Your Russian Aunt Mindy",
+    "section": 2
+  },
+  { "id": "theSwan", "title": "The Swan", "section": 2 },
+  { "id": "theSevenOldDucks", "title": "The Seven Old Ducks", "section": 2 },
+  { "id": "theLittleCities", "title": "The Little Cities", "section": 2 },
+  { "id": "theAvenues", "title": "The Avenues", "section": 2 },
+  { "id": "toAPasserby", "title": "To A Passerby", "section": 2 },
+  { "id": "theSqueegeeMan", "title": "The Squeegee Man", "section": 2 },
+  {
+    "id": "leCrepesculeDuMatin",
+    "title": "Le Crepescule Du Matin",
+    "section": 2
+  },
+  {
+    "id": "theGame",
+    "title": "The Game (Poof! You’re An Orange Sandwich!)",
+    "section": 2
+  },
+  { "id": "aScaryCabRide", "title": "A Scary Cab Ride", "section": 2 },
+  {
+    "id": "iLoveMyAnsweringMachine",
+    "title": "I Love My Answering Machine",
+    "section": 2
+  },
+  {
+    "id": "xcix",
+    "title": "XCIX (“Jenny’s steps forget what she’s seen already…”)",
+    "section": 2
+  },
+  {
+    "id": "c",
+    "title": "C (“The dog man’s foot servant jumped out of the loose jail…”)",
+    "section": 2
+  },
+  { "id": "broomsAndTears", "title": "Brooms And Tears", "section": 2 },
+  {
+    "id": "twoBuddhistMonks",
+    "title": "Two Buddhist Monks Gunned Their Motorcycles/Rêve Parisien",
+    "section": 2
+  },
+  {
+    "id": "leCrepesculeDuSoir",
+    "title": "Le Crepescule Du Soir",
+    "section": 2
+  },
+  { "sectionTitle": "Le Vin" },
+  { "id": "lAmeDuVin", "title": "L’Ame Du Vin", "section": 3 },
+  {
+    "id": "youStepOutside",
+    "title": "You Step Outside Of The Week’s Shuffling Yesses",
+    "section": 3
+  },
+  {
+    "id": "leavingTheSpanishAdmiral",
+    "title": "Leaving The Spanish Admiral",
+    "section": 3
+  },
+  { "id": "theSolitaryDrinker", "title": "The Solitary Drinker", "section": 3 },
+  {
+    "id": "leavingDaysAMoonMountain",
+    "title": "Leaving Days A Moon Mountain",
+    "section": 3
+  },
+  { "sectionTitle": "La Destruction" },
+  { "id": "laDestruction", "title": "La Destruction", "section": 4 },
+  { "id": "aLateMartyr", "title": "A Late Martyr", "section": 4 },
+  { "id": "theBothOfThem", "title": "The Both Of Them", "section": 4 },
+  {
+    "id": "femmesDamneex",
+    "title": "Femmes Damneex (Delphine et Hippolyte)",
+    "section": 4
+  },
+  { "id": "femmesDamnees1", "title": "Femmes Damnées", "section": 4 },
+  { "id": "femmesDamnees2", "title": "Femmes Damnées", "section": 4 },
+  { "id": "ladyBouncers", "title": "Lady Bouncers", "section": 4 },
+  { "id": "laughingTundraSong", "title": "Laughing Tundra Song", "section": 4 },
+  {
+    "id": "inTheStockingFactory",
+    "title": "In The Stocking Factory",
+    "section": 4
+  },
+  { "id": "laBeatrice", "title": "La Béatrice", "section": 4 },
+  {
+    "id": "lesMetAlphonse",
+    "title": "Les Met Alphonse, Hortense And Pamplemousse In My Accountant’sOffice With A Vampire",
+    "section": 4
+  },
+  {
+    "id": "unVoyageACythere",
+    "title": "Un Voyage À Cythère (No Seats On The Plane)",
+    "section": 4
+  },
+  { "id": "lAmourEtLeCrane", "title": "L’Amour Et Le Crane", "section": 4 },
+  { "sectionTitle": "Révolte" },
+  {
+    "id": "theWidowOfSaintPierre",
+    "title": "The Widow Of Saint Pierre",
+    "section": 5
+  },
+  { "id": "abelAndCain", "title": "Abel And Cain", "section": 5 },
+  { "sectionTitle": "La Mort" },
+  {
+    "id": "lesLitaniesDeSatan",
+    "title": "Les Litanies De Satan",
+    "section": 6
+  },
+  {
+    "id": "lawMorgueDaysAlmonds",
+    "title": "Law Morgue Days Almonds",
+    "section": 6
+  },
+  { "id": "theDeathOfThePoor", "title": "The Death Of The Poor", "section": 6 },
+  { "id": "theNorthOfArtists", "title": "The North Of Artists", "section": 6 },
+  {
+    "id": "theFinOfTheJourney",
+    "title": "The Fin Of The Journey",
+    "section": 6
+  },
+  { "id": "leReveDUnCurieux", "title": "Le Rêve D’Un Curieux", "section": 6 },
+  { "id": "leVoyage", "title": "Le Voyage", "section": 6 },
+  { "id": "afterword", "title": "Afterword" }
+]
