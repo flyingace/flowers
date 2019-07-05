@@ -3,6 +3,13 @@
   margin: 0 auto;
   padding: 9em 3em 7em;
   text-align: left;
+  //opacity: 0;
+
+  &.fade-in {
+    animation-duration: 1s;
+    animation-name: fadeIn;
+    animation-iteration-count: 1;
+  }
 
   .poem-number {
     margin-bottom: 0.5em;
@@ -12,9 +19,29 @@
   }
 
   .poem-title {
-    margin-bottom: 0.8em;
+    margin-bottom: 28px;
     font-family: 'Petrona', 'Times New Roman', serif;
-    font-size: 1.8em;
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .poem-subtitle {
+    margin: -27px 0 28px;
+    font-family: 'Petrona', 'Times New Roman', serif;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .poem-dedication {
+    margin: -15px 140px 28px 0;
+    font-size: 18px;
+    font-style: italic;
+    text-align: right;
+  }
+
+  .poem-epigram {
+    margin: -10px 0 28px;
+    font-size: 18px;
     text-align: center;
   }
 
@@ -25,5 +52,15 @@
       text-indent: -5em;
       white-space: pre-wrap;
     }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

@@ -1,7 +1,9 @@
 @import '../../styles/constants';
 
 .poem-form {
-  margin-bottom: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
 
   * {
     font-family: 'Petrona', 'Times New Roman', serif;
