@@ -9,10 +9,14 @@ export default function TableOfContents() {
   const generateLinks = () => {
     return poemOrder.map((link) => {
       if (link.sectionTitle) {
-        return <h3 className="section-title">{link.sectionTitle}</h3>;
+        return (
+          <h3 className="section-title" key={link.sectionTitle}>
+            {link.sectionTitle}
+          </h3>
+        );
       }
       return (
-        <li>
+        <li key={link.id}>
           <Link to={`/poem/${link.id}`}>{link.title}</Link>
         </li>
       );

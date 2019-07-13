@@ -1,8 +1,9 @@
 /* eslint no-param-reassign: off */
 /* eslint no-use-before-define: off */
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import { camelCase } from 'lodash';
 import './PoemForm.scss';
 
@@ -17,19 +18,25 @@ const PoemForm = (props) => {
   const poemBodyField = useRef(null);
   const poemIdField = useRef(null);
   const {
+    _id,
     addPoem,
     edit,
-    updatePoem,
-    _id,
+    history,
     poemBody,
     poemDedication,
     poemEpigram,
-    poemNumber,
-    poemSubTitle,
-    poemTitleFrench,
-    poemTitle,
     poemId,
+    poemNumber,
+    poemSection,
+    poemSubTitle,
+    poemTitle,
+    poemTitleFrench,
+    updatePoem,
   } = props;
+
+  useEffect(() => {
+    sectionSelect.current.value = poemSection;
+  }, [poemSection]);
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -39,14 +46,14 @@ const PoemForm = (props) => {
       poemBody: pbArray,
       poemDedication: dedicationField.current.value,
       poemEpigram: epigramField.current.value,
+      poemId: edit
+        ? poemIdField.current.value
+        : camelCase(titleField.current.value),
       poemNumber: numberField.current.value,
       poemSection: sectionSelect.current.value,
       poemSubTitle: subTitleField.current.value,
       poemTitle: titleField.current.value,
       poemTitleFrench: frenchTitleField.current.value,
-      poemId: edit
-        ? poemIdField.current.value
-        : camelCase(titleField.current.value),
     };
 
     if (!edit) {
@@ -54,19 +61,22 @@ const PoemForm = (props) => {
     } else {
       updatePoem(_id, poemData);
     }
+
+    window.scrollTo(0, 0);
+    history.push(`/poem/${poemData.poemId}`);
   };
 
   const resetForm = () => {
     [
-      numberField,
-      titleField,
-      subTitleField,
-      frenchTitleField,
       dedicationField,
       epigramField,
+      frenchTitleField,
+      numberField,
       poemBodyField,
       poemIdField,
       sectionSelect,
+      subTitleField,
+      titleField,
     ].forEach((fieldRef) => {
       fieldRef.current.value = '';
     });
@@ -78,12 +88,11 @@ const PoemForm = (props) => {
     const startItalic = /(<em>)/g;
     const endItalic = /(<\/em>)/g;
     return poemBodyAsArray.map((line) => {
-      const l = line
+      return line
         .replace(twoOrMoreSpaces, ' ')
         .replace(startItalic, '\u003Cem\u003E')
         .replace(endItalic, '\u003C\u002Fem\u003E')
         .trim();
-      return l;
     });
   };
 
@@ -159,8 +168,9 @@ const PoemForm = (props) => {
           ref={poemIdField}
           defaultValue={poemId}
         />
+        <label htmlFor="section-select">Section</label>
         <select id="section-select" ref={sectionSelect}>
-          <option value="">Section</option>
+          <option value="">--Select One--</option>
           <option value="spleenEtIdeal">Spleen et Idéal</option>
           <option value="tableauxParisiens">Tableaux Parisiens</option>
           <option value="leVin">Le Vin</option>
@@ -189,29 +199,34 @@ const PoemForm = (props) => {
   );
 };
 
-export default PoemForm;
+export default withRouter(PoemForm);
 
 PoemForm.propTypes = {
-  addPoem: PropTypes.func.isRequired,
-  updatePoem: PropTypes.func.isRequired,
-  edit: PropTypes.bool,
   _id: PropTypes.string,
+  addPoem: PropTypes.func.isRequired,
+  edit: PropTypes.bool,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
   poemBody: PropTypes.arrayOf(PropTypes.string),
   poemDedication: PropTypes.string,
-  poemTitleFrench: PropTypes.string,
   poemEpigram: PropTypes.string,
+  poemId: PropTypes.string,
   poemNumber: PropTypes.string,
+  poemSection: PropTypes.string,
   poemSubTitle: PropTypes.string,
   poemTitle: PropTypes.string,
+  poemTitleFrench: PropTypes.string,
+  updatePoem: PropTypes.func.isRequired,
 };
 
 PoemForm.defaultProps = {
-  edit: false,
   _id: '',
+  edit: false,
   poemBody: [''],
   poemDedication: '',
   poemEpigram: '',
+  poemId: '',
   poemNumber: '',
+  poemSection: '',
   poemSubTitle: '',
   poemTitle: '',
   poemTitleFrench: '',
