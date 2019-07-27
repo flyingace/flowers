@@ -1,30 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { map as _map } from 'lodash';
+import { Link, withRouter } from 'react-router-dom';
+import poemOrder from '../../poemOrder';
 import * as ROUTES from '../../constants/routes';
 import './Navigation.scss';
 
 const Navigation = (props) => {
-  const { poems } = props;
+  const { history, poemId } = props;
 
-  const createPoemLinks = () => {
-    return _map(poems, (poem, idx) => {
-      return (
-        <li key={`li_${idx}`}>
-          <Link to={`/poem/${poem.poemId}`}>{poem.poemTitle}</Link>
-        </li>
-      );
+  const [previousPoem, setPreviousPoem] = useState({});
+  const [nextPoem, setNextPoem] = useState({});
+
+  useEffect(() => {
+    const filteredPoemOrder = poemOrder.filter((poemData) => {
+      return poemData.id !== undefined;
     });
-  };
+    const currentIndex = filteredPoemOrder.findIndex((poemData) => {
+      return poemData.id === poemId;
+    });
+
+    if (currentIndex > 0) {
+      setPreviousPoem(filteredPoemOrder[currentIndex - 1]);
+    } else {
+      setPreviousPoem({});
+    }
+
+    if (currentIndex < filteredPoemOrder.length - 1) {
+      setNextPoem(filteredPoemOrder[currentIndex + 1]);
+    } else {
+      setNextPoem({});
+    }
+  }, [poemId]);
+
+  useEffect(() => {
+    const handleKeyDown = (evt) => {
+      const keycode = evt.keyCode;
+      if (history.location.pathname !== '/edit') {
+        if (keycode === 37) {
+          history.push(`/poem/${previousPoem.id}`);
+        }
+        if (keycode === 39) {
+          history.push(`/poem/${nextPoem.id}`);
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [history, previousPoem.id, nextPoem.id]);
 
   return (
     <nav>
-      <ul>
+      <ul className="main-navigation">
         <li>
           <Link to={ROUTES.LANDING}>Flowers of Bad</Link>
         </li>
-        {/*{createPoemLinks()}*/}
         <li>
           <Link to={ROUTES.TOC}>Table of Contents</Link>
         </li>
@@ -35,14 +68,31 @@ const Navigation = (props) => {
           <Link to={ROUTES.POEMFORM}>Form</Link>
         </li>
       </ul>
+      <ul className="next-previous-navigation">
+        <li>
+          {previousPoem.id && (
+            <Link to={`/poem/${previousPoem.id}`} className="previous-poem">
+              &lsaquo;&nbsp;{previousPoem.title}
+            </Link>
+          )}
+        </li>
+        <li>
+          {nextPoem.id && (
+            <Link to={`/poem/${nextPoem.id}`} className="next-poem">
+              {nextPoem.title}&nbsp;&rsaquo;
+            </Link>
+          )}
+        </li>
+      </ul>
     </nav>
   );
 };
 
-export default Navigation;
+export default withRouter(Navigation);
 
 Navigation.propTypes = {
-  poems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  poemId: PropTypes.string.isRequired,
 };
 
 Navigation.defaultProps = {};

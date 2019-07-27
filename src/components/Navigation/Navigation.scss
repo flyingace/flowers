@@ -1,6 +1,9 @@
 @import '../../styles/constants';
 
 nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   height: 40px;
   width: calc(100% - 100px);
   overflow: hidden;
@@ -27,11 +30,16 @@ nav {
           color: #fff;
         }
       }
-
-      &:first-of-type {
-        font-weight: 700;
-        color: #fff;
-      }
     }
+  }
+
+  .main-navigation {
+    li:first-of-type {
+      font-weight: 700;
+      color: #fff;
+    }
+  }
+
+  .next-previous-navigation {
   }
 }

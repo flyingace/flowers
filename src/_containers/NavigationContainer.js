@@ -5,7 +5,7 @@ import Navigation from '../components/Navigation/Navigation';
 
 function mapStateToProps(state) {
   return {
-    poems: state.PoemData.poems,
+    poemId: state.PoemData.targetPoem.poemId,
   };
 }
 
