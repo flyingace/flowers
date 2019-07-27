@@ -9,11 +9,13 @@
   background-size: 200px 500px;
   background-repeat: repeat-y;
   background-position: top 0 right -100px;
-  overflow-y: auto;
+  overflow: hidden;
 
   .page {
-    min-height: calc(100% - 40px);
+    position: relative;
+    height: calc(100% - 40px);
     margin: 0 100px 0 0;
     background-color: #fff;
+    overflow-y: auto;
   }
 }
