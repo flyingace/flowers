@@ -135,8 +135,11 @@ export const Line = ({ children }) => {
   const line = children.split('');
   line.splice(line.lastIndexOf(' '), 1, '\xa0');
   const noWidow = line.join('');
-
-  return <div className="poem-line">{noWidow}</div>;
+  return noWidow.search(/<[a-z]+>/) > -1 ? (
+    <div className="poem-line" dangerouslySetInnerHTML={{ __html: noWidow }} />
+  ) : (
+    <div className="poem-line">{noWidow}</div>
+  );
 };
 
 Line.propTypes = {
