@@ -21,7 +21,7 @@
   .poem-title {
     margin-bottom: 28px;
     font-family: 'Petrona', 'Times New Roman', serif;
-    font-size: 36px;
+    font-size: 38px;
     text-align: center;
   }
 
@@ -40,13 +40,14 @@
   }
 
   .poem-epigram {
-    margin: -10px 0 28px;
+    margin: -10px 0 28px 120px;
     font-size: 18px;
-    text-align: center;
+    text-align: left;
+    font-style: italic;
   }
 
   .poem-body {
-    font-size: 20px;
+    font-size: 22px;
     margin-bottom: 40px;
 
     .poem-section-title {

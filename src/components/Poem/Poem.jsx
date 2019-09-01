@@ -69,12 +69,19 @@ const Poem = (props) => {
         <div className="poem-number">{poemNumber}</div>
         <Title>{poemTitle}</Title>
         {poemSubTitle && <div className="poem-subtitle">{poemSubTitle}</div>}
-        {poemEpigram && <div className="poem-epigram">{poemEpigram}</div>}
+        {poemEpigram && (
+          <div
+            className="poem-epigram"
+            dangerouslySetInnerHTML={{ __html: poemEpigram }}
+          />
+        )}
         {poemDedication && (
           <div className="poem-dedication">{poemDedication}</div>
         )}
         <PoemBody>{generatePoemBody(poemBody)}</PoemBody>
-        <Link to={ROUTES.POEMEDIT}>edit</Link>
+        {process.env.NODE_ENV !== 'production' && (
+          <Link to={ROUTES.POEMEDIT}>edit</Link>
+        )}
       </div>
     </React.Fragment>
   );
