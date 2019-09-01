@@ -62,11 +62,13 @@ const Navigation = (props) => {
           <Link to={ROUTES.TOC}>Table of Contents</Link>
         </li>
         <li>
-          <Link to={ROUTES.DAVIDCAMERON}>David Cameron</Link>
+          <Link to={ROUTES.ABOUT}>About</Link>
         </li>
-        <li>
-          <Link to={ROUTES.POEMFORM}>Form</Link>
-        </li>
+        {/*{process.env.NODE_ENV !== 'production' && (*/}
+        {/*  <li>*/}
+        {/*    <Link to={ROUTES.POEMFORM}>Form</Link>*/}
+        {/*  </li>*/}
+        {/*)}*/}
       </ul>
       <ul className="next-previous-navigation">
         <li>

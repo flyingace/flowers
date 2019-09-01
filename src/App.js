@@ -7,7 +7,7 @@ import PoemContainer from './_containers/PoemContainer';
 import PoemFormContainer from './_containers/PoemFormContainer';
 import TableOfContents from './components/TableOfContents/TableOfContents';
 import { requestAllPoems } from './_actions/PoemsActions';
-import { Bio } from './components/Bio/Bio';
+import { About } from './components/About/About';
 import './App.scss';
 
 function App() {
@@ -30,8 +30,13 @@ function App() {
             render={(match) => <PoemContainer {...match} />}
           />
           <Route path={ROUTES.TOC} render={() => <TableOfContents />} />
-          <Route path={ROUTES.DAVIDCAMERON} render={() => <Bio />} />
-          <Route path={ROUTES.POEMFORM} render={() => <PoemFormContainer />} />
+          <Route path={ROUTES.ABOUT} render={() => <About />} />
+          {process.env.NODE_ENV !== 'production' && (
+            <Route
+              path={ROUTES.POEMFORM}
+              render={() => <PoemFormContainer />}
+            />
+          )}
           <Route
             path={ROUTES.POEMEDIT}
             render={() => <PoemFormContainer edit />}

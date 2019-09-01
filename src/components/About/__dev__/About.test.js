@@ -3,13 +3,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
-import { Bio } from '../Bio';
+import { About } from '../About';
 
 const initialProps = {};
 
 const setup = (propOverrides) => {
   const props = Object.assign({}, initialProps, propOverrides);
-  const Component = shallow(<Bio {...props} />);
+  const Component = shallow(<About {...props} />);
 
   return {
     props,
@@ -21,13 +21,13 @@ describe('About', () => {
   //It renders
   it('renders without crashing', () => {
     const { props } = setup();
-    shallow(<Bio {...props} />);
+    shallow(<About {...props} />);
   });
 
   //It matches its snapshot
   it('matches its existing snapshot', () => {
     const { props } = setup();
-    const snapshot = renderer.create(<Bio {...props} />).toJSON();
+    const snapshot = renderer.create(<About {...props} />).toJSON();
     expect(snapshot).toMatchSnapshot();
   });
 });
