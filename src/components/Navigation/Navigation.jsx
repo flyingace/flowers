@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { map as _map } from 'lodash';
 import { Link, withRouter } from 'react-router-dom';
 import poemOrder from '../../poemOrder';
 import * as ROUTES from '../../constants/routes';
@@ -74,14 +73,14 @@ const Navigation = (props) => {
         <li>
           {previousPoem.id && (
             <Link to={`/poem/${previousPoem.id}`} className="previous-poem">
-              &lsaquo;&nbsp;{previousPoem.title}
+              previous
             </Link>
           )}
         </li>
         <li>
           {nextPoem.id && (
             <Link to={`/poem/${nextPoem.id}`} className="next-poem">
-              {nextPoem.title}&nbsp;&rsaquo;
+              next
             </Link>
           )}
         </li>

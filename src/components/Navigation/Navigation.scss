@@ -34,6 +34,9 @@ nav {
   }
 
   .main-navigation {
+    flex: 1;
+    min-width: 450px;
+
     li:first-of-type {
       font-weight: 700;
       color: #fff;
@@ -41,5 +44,32 @@ nav {
   }
 
   .next-previous-navigation {
+    flex-basis: 190px;
+    justify-content: flex-end;
+
+    .previous-poem,
+    .next-poem {
+      margin: 0 15px;
+      text-decoration: none;
+      white-space: nowrap;
+
+      span {
+        height: 40px;
+      }
+    }
+
+    .previous-poem {
+      text-align: left;
+      &:before {
+        content: '\2039  ';
+      }
+    }
+
+    .next-poem {
+      text-align: right;
+      &:after {
+        content: ' \203a';
+      }
+    }
   }
 }
