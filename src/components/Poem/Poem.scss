@@ -1,9 +1,10 @@
+@import '../../styles/constants.scss';
+
 .poem {
   max-width: 800px;
   margin: 0 auto;
-  padding: 180px 60px 120px;
+  padding: 120px 60px 120px;
   text-align: left;
-  //opacity: 0;
 
   &.fade-in {
     animation-duration: 1s;
@@ -61,22 +62,6 @@
       text-indent: -5em;
       white-space: pre-wrap;
     }
-  }
-}
-
-.next-previous {
-  position: fixed;
-  top: 50px;
-  right: 110px;
-  padding: 5px;
-
-  .previous-poem,
-  .next-poem {
-    display: block;
-    font-family: 'Petrona', 'Times New Roman', serif;
-    text-align: right;
-    color: #171b3c;
-    text-decoration: none;
   }
 }
 

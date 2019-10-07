@@ -32,3 +32,9 @@
     padding: 20px;
   }
 }
+
+@mixin withEllipses {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
