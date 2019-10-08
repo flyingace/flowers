@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 120px 60px 120px;
   text-align: left;
+  overflow-y: auto;
 
   &.fade-in {
     animation-duration: 1s;

@@ -6,7 +6,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #171b3c;
+  background-color: $_PURPLE;
   background-image: url('./assets/vine_pattern.svg');
   background-size: 200px 500px;
   background-repeat: repeat-y;
@@ -22,6 +22,9 @@
     height: calc(100% - 40px);
     margin: 0 100px 0 0;
     background-color: #fff;
-    overflow-y: auto;
+  }
+
+  .simplebar-scrollbar:before {
+    background-color: $_PURPLE;
   }
 }

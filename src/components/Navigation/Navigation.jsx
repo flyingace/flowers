@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useRouteMatch } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
 import poemOrder from '../../poemOrder';
 import * as ROUTES from '../../constants/routes';
@@ -10,6 +11,8 @@ const Navigation = (props) => {
 
   const [previousPoem, setPreviousPoem] = useState({});
   const [nextPoem, setNextPoem] = useState({});
+
+  const isPoemPage = !!useRouteMatch('/poem/');
 
   useEffect(() => {
     const filteredPoemOrder = poemOrder.filter((poemData) => {
@@ -35,7 +38,7 @@ const Navigation = (props) => {
   useEffect(() => {
     const handleKeyDown = (evt) => {
       const keycode = evt.keyCode;
-      if (history.location.pathname !== '/edit') {
+      if (isPoemPage) {
         if (keycode === 37) {
           history.push(`/poem/${previousPoem.id}`);
         }
@@ -49,7 +52,7 @@ const Navigation = (props) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [history, previousPoem.id, nextPoem.id]);
+  }, [history, nextPoem.id, previousPoem.id, isPoemPage]);
 
   return (
     <nav>
@@ -69,22 +72,25 @@ const Navigation = (props) => {
         {/*  </li>*/}
         {/*)}*/}
       </ul>
-      <ul className="next-previous-navigation">
-        <li>
-          {previousPoem.id && (
-            <Link to={`/poem/${previousPoem.id}`} className="previous-poem">
-              previous
-            </Link>
-          )}
-        </li>
-        <li>
-          {nextPoem.id && (
-            <Link to={`/poem/${nextPoem.id}`} className="next-poem">
-              next
-            </Link>
-          )}
-        </li>
-      </ul>
+      {isPoemPage && (
+        <ul className="next-previous-navigation">
+          <li>
+            {previousPoem.id && (
+              <Link to={`/poem/${previousPoem.id}`} className="previous-poem">
+                previous
+              </Link>
+            )}
+          </li>
+          <li>
+            {nextPoem.id && (
+              <Link to={`/poem/${nextPoem.id}`} className="next-poem">
+                next
+              </Link>
+            )}
+          </li>
+        </ul>
+      )}
+      ;
     </nav>
   );
 };

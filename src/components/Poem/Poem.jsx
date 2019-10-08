@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import SimpleBar from 'simplebar-react';
 import * as ROUTES from '../../constants/routes';
+import 'simplebar/dist/simplebar.min.css';
 import './Poem.scss';
 
 /* Poem */
@@ -64,7 +66,7 @@ const Poem = (props) => {
 
   const poemClass = isFading ? 'poem fade-in' : 'poem';
   return (
-    <React.Fragment>
+    <SimpleBar style={{ height: '100%' }}>
       <div className={poemClass}>
         <div className="poem-number">{poemNumber}</div>
         <Title>{poemTitle}</Title>
@@ -83,7 +85,7 @@ const Poem = (props) => {
           <Link to={ROUTES.POEMEDIT}>edit</Link>
         )}
       </div>
-    </React.Fragment>
+    </SimpleBar>
   );
 };
 
