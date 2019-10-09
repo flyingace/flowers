@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SimpleBar from 'simplebar-react';
 import { Link } from 'react-router-dom';
 import poemOrder from '../../poemOrder';
-import 'simplebar/dist/simplebar.min.css';
 import './TableOfContents.scss';
 
 /* TableOfContents */
@@ -26,12 +24,10 @@ const TableOfContents = () => {
   };
 
   return (
-    <SimpleBar style={{ height: '100%' }}>
-      <div className="table-of-contents">
-        <h2>Table of Contents</h2>
-        <ul>{generateLinks()}</ul>
-      </div>
-    </SimpleBar>
+    <div className="table-of-contents">
+      <h2>Table of Contents</h2>
+      <ul>{generateLinks()}</ul>
+    </div>
   );
 };
 
