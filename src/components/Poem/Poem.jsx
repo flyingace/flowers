@@ -3,9 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import SimpleBar from 'simplebar-react';
 import * as ROUTES from '../../constants/routes';
-import 'simplebar/dist/simplebar.min.css';
 import './Poem.scss';
 
 /* Poem */
@@ -66,26 +64,24 @@ const Poem = (props) => {
 
   const poemClass = isFading ? 'poem fade-in' : 'poem';
   return (
-    <SimpleBar style={{ height: '100%' }}>
-      <div className={poemClass}>
-        <div className="poem-number">{poemNumber}</div>
-        <Title>{poemTitle}</Title>
-        {poemSubTitle && <div className="poem-subtitle">{poemSubTitle}</div>}
-        {poemEpigram && (
-          <div
-            className="poem-epigram"
-            dangerouslySetInnerHTML={{ __html: poemEpigram }}
-          />
-        )}
-        {poemDedication && (
-          <div className="poem-dedication">{poemDedication}</div>
-        )}
-        <PoemBody>{generatePoemBody(poemBody)}</PoemBody>
-        {process.env.NODE_ENV !== 'production' && (
-          <Link to={ROUTES.POEMEDIT}>edit</Link>
-        )}
-      </div>
-    </SimpleBar>
+    <div className={poemClass}>
+      <div className="poem-number">{poemNumber}</div>
+      <Title>{poemTitle}</Title>
+      {poemSubTitle && <div className="poem-subtitle">{poemSubTitle}</div>}
+      {poemEpigram && (
+        <div
+          className="poem-epigram"
+          dangerouslySetInnerHTML={{ __html: poemEpigram }}
+        />
+      )}
+      {poemDedication && (
+        <div className="poem-dedication">{poemDedication}</div>
+      )}
+      <PoemBody>{generatePoemBody(poemBody)}</PoemBody>
+      {process.env.NODE_ENV !== 'production' && (
+        <Link to={ROUTES.POEMEDIT}>edit</Link>
+      )}
+    </div>
   );
 };
 
