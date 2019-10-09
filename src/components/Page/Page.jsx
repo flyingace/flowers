@@ -1,17 +1,13 @@
 import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import SimpleBarReact from 'simplebar-react';
 import { useLocation } from 'react-router';
-import { Route } from 'react-router-dom';
-import * as ROUTES from '../../constants/routes';
-import PoemContainer from '../../_containers/PoemContainer';
-import TableOfContents from '../TableOfContents/TableOfContents';
-import PoemFormContainer from '../../_containers/PoemFormContainer';
-import { About } from '../About/About';
 import 'simplebar/dist/simplebar.min.css';
 import './Page.scss';
 
 /* Page */
-export const Page = () => {
+const Page = (props) => {
+  const { children } = props;
   const location = useLocation();
   const pageRef = useRef(null);
 
@@ -25,26 +21,18 @@ export const Page = () => {
 
   return (
     <div className="page" ref={pageRef}>
-      <SimpleBarReact style={{ height: '100%' }}>
-        <Route
-          path={ROUTES.POEM}
-          render={(match) => <PoemContainer {...match} />}
-        />
-        <Route path={ROUTES.TOC} render={() => <TableOfContents />} />
-        <Route path={ROUTES.ABOUT} render={() => <About />} />
-        {process.env.NODE_ENV !== 'production' && (
-          <Route path={ROUTES.POEMFORM} render={() => <PoemFormContainer />} />
-        )}
-        <Route
-          path={ROUTES.POEMEDIT}
-          render={() => <PoemFormContainer edit />}
-        />
-      </SimpleBarReact>
+      <SimpleBarReact style={{ height: '100%' }}>{children}</SimpleBarReact>
     </div>
   );
 };
 
-Page.propTypes = {};
+Page.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.any),
+};
 
-Page.defaultProps = {};
+Page.defaultProps = {
+  children: [],
+};
+
+export default Page;
 /* */
