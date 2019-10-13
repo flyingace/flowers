@@ -8,6 +8,7 @@ const initialState = {
     poemDedication: '',
     poemEpigram: '',
     poemId: '',
+    poemIndex: null,
     poemNumber: '',
     poemSection: '',
     poemSubTitle: '',
