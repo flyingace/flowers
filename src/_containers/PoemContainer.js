@@ -5,10 +5,11 @@ import Poem from '../components/Poem/Poem';
 
 function mapStateToProps(state, ownProps) {
   return {
-    poemId: ownProps.match.params.poemId,
     poemBody: state.PoemData.targetPoem.poemBody,
     poemDedication: state.PoemData.targetPoem.poemDedication,
     poemEpigram: state.PoemData.targetPoem.poemEpigram,
+    poemId: ownProps.match.params.poemId,
+    poemIndex: state.PoemData.targetPoem.poemIndex,
     poemNumber: state.PoemData.targetPoem.poemNumber,
     poems: state.PoemData.poems,
     poemSubTitle: state.PoemData.targetPoem.poemSubTitle,

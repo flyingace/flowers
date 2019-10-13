@@ -17,6 +17,7 @@ const PoemForm = (props) => {
   const epigramField = useRef(null);
   const poemBodyField = useRef(null);
   const poemIdField = useRef(null);
+  const poemIndexField = useRef(null);
   const {
     _id,
     addPoem,
@@ -26,6 +27,7 @@ const PoemForm = (props) => {
     poemDedication,
     poemEpigram,
     poemId,
+    poemIndex,
     poemNumber,
     poemSection,
     poemSubTitle,
@@ -49,6 +51,7 @@ const PoemForm = (props) => {
       poemId: edit
         ? poemIdField.current.value
         : camelCase(titleField.current.value),
+      poemIndex: poemIndexField.current.value,
       poemNumber: numberField.current.value,
       poemSection: sectionSelect.current.value,
       poemSubTitle: subTitleField.current.value,
@@ -62,7 +65,6 @@ const PoemForm = (props) => {
       updatePoem(_id, poemData);
     }
 
-    window.scrollTo(0, 0);
     history.push(`/poem/${poemData.poemId}`);
   };
 
@@ -71,6 +73,7 @@ const PoemForm = (props) => {
       dedicationField,
       epigramField,
       frenchTitleField,
+      poemIndexField,
       numberField,
       poemBodyField,
       poemIdField,
@@ -83,7 +86,15 @@ const PoemForm = (props) => {
   };
 
   const convertBodyToArray = (poemBodyAsLongString) => {
-    const poemBodyAsArray = poemBodyAsLongString.split(/\r?\n/g);
+    if (poemBodyAsLongString.indexOf('-Section-') !== 0) {
+      return createArrayOfStrings(poemBodyAsLongString);
+    }
+
+    return createArrayOfObjects(poemBodyAsLongString);
+  };
+
+  const createArrayOfStrings = (bodyString) => {
+    const poemBodyAsArray = bodyString.split(/\r?\n/g);
     const twoOrMoreSpaces = /( ){2,}/g;
     const startItalic = /(<em>)/g;
     const endItalic = /(<\/em>)/g;
@@ -96,14 +107,48 @@ const PoemForm = (props) => {
     });
   };
 
+  const createArrayOfObjects = (bodyString) => {
+    const sections = bodyString.split('-Section-');
+    sections.shift();
+    return sections.map((section) => {
+      const sectionParts = section.split('|-|');
+      return {
+        poemSection: {
+          sectionNumber: sectionParts[1],
+          sectionTitle: sectionParts[2],
+          sectionBody: createArrayOfStrings(sectionParts[4]),
+        },
+      };
+    });
+  };
+
   const convertArrayToBody = (poemBodyAsArray) => {
     if (poemBodyAsArray.length > 0) {
-      return poemBodyAsArray.reduce((a, b) => {
-        return a + '\u000A' + b.toString();
-      });
+      if (typeof poemBodyAsArray[0] === 'string') {
+        return convertArrayToStrings(poemBodyAsArray);
+      }
+
+      return convertMultiSectionPoem(poemBodyAsArray);
     }
 
     return '';
+  };
+
+  const convertArrayToStrings = (arrayOfStrings) => {
+    return arrayOfStrings.reduce((a, b) => {
+      return `${a}\u000A${b.toString()}`;
+    });
+  };
+
+  const convertMultiSectionPoem = (arrayOfObjects) => {
+    return arrayOfObjects.map((section) => {
+      const { sectionNumber, sectionTitle, sectionBody } = section.poemSection;
+      const secNumber = `|-|${sectionNumber || ''}`;
+      const secTitle = `|-|${sectionTitle || ''}`;
+      return `-Section-\u000A${secNumber}${secTitle}|-|\u000A|-|${convertArrayToStrings(
+        sectionBody
+      )}|-|\u000A\u000A`;
+    });
   };
 
   const buttonLabel = edit ? 'Update' : 'Submit';
@@ -119,6 +164,14 @@ const PoemForm = (props) => {
           name="number"
           ref={numberField}
           defaultValue={poemNumber}
+        />
+        <label htmlFor="number">Index</label>
+        <input
+          type="number"
+          id="index"
+          name="index"
+          ref={poemIndexField}
+          defaultValue={poemIndex}
         />
         <label htmlFor="title">Title</label>
         <input
@@ -206,10 +259,11 @@ PoemForm.propTypes = {
   addPoem: PropTypes.func.isRequired,
   edit: PropTypes.bool,
   history: PropTypes.objectOf(PropTypes.any).isRequired,
-  poemBody: PropTypes.arrayOf(PropTypes.string),
+  poemBody: PropTypes.arrayOf(PropTypes.any),
   poemDedication: PropTypes.string,
   poemEpigram: PropTypes.string,
   poemId: PropTypes.string,
+  poemIndex: PropTypes.string,
   poemNumber: PropTypes.string,
   poemSection: PropTypes.string,
   poemSubTitle: PropTypes.string,
@@ -225,6 +279,7 @@ PoemForm.defaultProps = {
   poemDedication: '',
   poemEpigram: '',
   poemId: '',
+  poemIndex: null,
   poemNumber: '',
   poemSection: '',
   poemSubTitle: '',
