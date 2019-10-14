@@ -1,23 +1,52 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import poemOrder from '../../poemOrder';
+import { requestAllPoems } from '../../_actions/PoemsActions';
+import { TOCData } from '../../_selectors/selectors';
 import './TableOfContents.scss';
 
+const sectionTitles = {
+  spleenEtIdeal: 'Spleen Et Idéal',
+  tableauxParisiens: 'Tableaux Parisiens',
+  leVin: 'Le Vin',
+  fleursDuMal: 'Fleurs Du Mal',
+  revolte: 'Révolte',
+  laMort: 'La Mort',
+};
+
 /* TableOfContents */
-const TableOfContents = () => {
+const TableOfContents = (props) => {
+  // eslint-disable-next-line no-shadow
+  const { tocData, requestAllPoems } = props;
+
+  useEffect(() => {
+    if (tocData.length === 0) requestAllPoems();
+  }, [requestAllPoems, tocData]);
+
   const generateLinks = () => {
-    return poemOrder.map((link) => {
-      if (link.sectionTitle) {
+    return tocData.map((item, idx) => {
+      if (idx > 0 && item.poemSection !== tocData[idx - 1].poemSection) {
         return (
-          <h3 className="section-title" key={link.sectionTitle}>
-            {link.sectionTitle}
-          </h3>
+          <React.Fragment key={item.poemId}>
+            <h3 className="section-title">{sectionTitles[item.poemSection]}</h3>
+            <li>
+              <Link to={`/poem/${item.poemId}`}>
+                <span className="toc-numeral">{item.poemNumber}</span>
+                <span className="toc-title">{item.poemTitle}</span>
+                <span className="toc-title-french">{item.poemTitleFrench}</span>
+              </Link>
+            </li>
+          </React.Fragment>
         );
       }
       return (
-        <li key={link.id}>
-          <Link to={`/poem/${link.id}`}>{link.title}</Link>
+        <li key={item.poemId}>
+          <Link to={`/poem/${item.poemId}`}>
+            <span className="toc-numeral">{item.poemNumber}</span>
+            <span className="toc-title">{item.poemTitle}</span>
+            <span className="toc-title-french">{item.poemTitleFrench}</span>
+          </Link>
         </li>
       );
     });
@@ -31,9 +60,23 @@ const TableOfContents = () => {
   );
 };
 
-TableOfContents.propTypes = {};
+TableOfContents.propTypes = {
+  tocData: PropTypes.arrayOf(PropTypes.object),
+  requestAllPoems: PropTypes.func.isRequired,
+};
 
-TableOfContents.defaultProps = {};
-
-export default TableOfContents;
+TableOfContents.defaultProps = {
+  tocData: [],
+};
 /* */
+
+function mapStateToProps(state) {
+  return {
+    tocData: TOCData(state),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { requestAllPoems }
+)(TableOfContents);
