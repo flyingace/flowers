@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouteMatch } from 'react-router';
 import { Link, withRouter } from 'react-router-dom';
-import poemOrder from '../../poemOrder';
 import * as ROUTES from '../../constants/routes';
 import './Navigation.scss';
 
 const Navigation = (props) => {
-  const { history, poemId } = props;
+  const { history, poemId, tocData } = props;
 
   const [previousPoem, setPreviousPoem] = useState({});
   const [nextPoem, setNextPoem] = useState({});
@@ -15,35 +14,32 @@ const Navigation = (props) => {
   const isPoemPage = !!useRouteMatch('/poems/');
 
   useEffect(() => {
-    const filteredPoemOrder = poemOrder.filter((poemData) => {
-      return poemData.id !== undefined;
-    });
-    const currentIndex = filteredPoemOrder.findIndex((poemData) => {
-      return poemData.id === poemId;
+    const currentIndex = tocData.findIndex((tocItem) => {
+      return tocItem.poemId === poemId;
     });
 
     if (currentIndex > 0) {
-      setPreviousPoem(filteredPoemOrder[currentIndex - 1]);
+      setPreviousPoem(tocData[currentIndex - 1]);
     } else {
       setPreviousPoem({});
     }
 
-    if (currentIndex < filteredPoemOrder.length - 1) {
-      setNextPoem(filteredPoemOrder[currentIndex + 1]);
+    if (currentIndex < tocData.length - 1) {
+      setNextPoem(tocData[currentIndex + 1]);
     } else {
       setNextPoem({});
     }
-  }, [poemId]);
+  }, [poemId, tocData]);
 
   useEffect(() => {
     const handleKeyDown = (evt) => {
       const keycode = evt.keyCode;
       if (isPoemPage) {
-        if (keycode === 37) {
-          history.push(`/poems/${previousPoem.id}`);
+        if (keycode === 37 && previousPoem.poemId) {
+          history.push(`/poems/${previousPoem.poemId}`);
         }
-        if (keycode === 39) {
-          history.push(`/poems/${nextPoem.id}`);
+        if (keycode === 39 && nextPoem.poemId) {
+          history.push(`/poems/${nextPoem.poemId}`);
         }
       }
     };
@@ -52,7 +48,7 @@ const Navigation = (props) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [history, nextPoem.id, previousPoem.id, isPoemPage]);
+  }, [history, nextPoem.poemId, previousPoem.poemId, isPoemPage]);
 
   return (
     <nav>
@@ -75,15 +71,18 @@ const Navigation = (props) => {
       {isPoemPage && (
         <ul className="next-previous-navigation">
           <li>
-            {previousPoem.id && (
-              <Link to={`/poems/${previousPoem.id}`} className="previous-poem">
+            {previousPoem.poemId && (
+              <Link
+                to={`/poems/${previousPoem.poemId}`}
+                className="previous-poem"
+              >
                 previous
               </Link>
             )}
           </li>
           <li>
-            {nextPoem.id && (
-              <Link to={`/poems/${nextPoem.id}`} className="next-poem">
+            {nextPoem.poemId && (
+              <Link to={`/poems/${nextPoem.poemId}`} className="next-poem">
                 next
               </Link>
             )}
@@ -100,6 +99,7 @@ export default withRouter(Navigation);
 Navigation.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
   poemId: PropTypes.string.isRequired,
+  tocData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 Navigation.defaultProps = {};
