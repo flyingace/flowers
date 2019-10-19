@@ -3,9 +3,15 @@
 .poem {
   max-width: 800px;
   margin: 0 auto;
-  padding: 120px 60px 120px;
+  padding: 120px 70px 80px;
   text-align: left;
   overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.9);
+
+  a {
+    position: relative;
+    top: 30px;
+  }
 
   &.fade-in {
     animation-duration: 1s;
@@ -50,7 +56,6 @@
 
   .poem-body {
     font-size: 22px;
-    margin-bottom: 40px;
 
     .poem-section-title {
       font-size: 18px;

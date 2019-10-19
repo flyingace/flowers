@@ -65,7 +65,7 @@ const PoemForm = (props) => {
       updatePoem(_id, poemData);
     }
 
-    history.push(`/poem/${poemData.poemId}`);
+    history.push(`/poems/${poemData.poemId}`);
   };
 
   const resetForm = () => {

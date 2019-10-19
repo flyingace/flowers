@@ -25,13 +25,13 @@ const TableOfContents = (props) => {
   }, [requestAllPoems, tocData]);
 
   const generateLinks = () => {
-    return tocData.map((item, idx) => {
+    const toc = tocData.map((item, idx) => {
       if (idx > 0 && item.poemSection !== tocData[idx - 1].poemSection) {
         return (
           <React.Fragment key={item.poemId}>
             <h3 className="section-title">{sectionTitles[item.poemSection]}</h3>
             <li>
-              <Link to={`/poem/${item.poemId}`}>
+              <Link to={`/poems/${item.poemId}`}>
                 <span className="toc-numeral">{item.poemNumber}</span>
                 <span className="toc-title">{item.poemTitle}</span>
                 <span className="toc-title-french">{item.poemTitleFrench}</span>
@@ -42,7 +42,7 @@ const TableOfContents = (props) => {
       }
       return (
         <li key={item.poemId}>
-          <Link to={`/poem/${item.poemId}`}>
+          <Link to={`/poems/${item.poemId}`}>
             <span className="toc-numeral">{item.poemNumber}</span>
             <span className="toc-title">{item.poemTitle}</span>
             <span className="toc-title-french">{item.poemTitleFrench}</span>
@@ -50,6 +50,18 @@ const TableOfContents = (props) => {
         </li>
       );
     });
+
+    if (toc.length > 0) {
+      toc.push(
+        <React.Fragment key={'afterword'}>
+          <Link to={'/afterword'}>
+            <h3 className="section-title">Afterword</h3>
+          </Link>
+        </React.Fragment>
+      );
+    }
+
+    return toc;
   };
 
   return (
