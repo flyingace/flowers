@@ -33,7 +33,9 @@ const TableOfContents = (props) => {
             <li>
               <Link to={`/poems/${item.poemId}`}>
                 <span className="toc-numeral">{item.poemNumber}</span>
-                <span className="toc-title">{item.poemTitle}</span>
+                <span className="toc-title">
+                  {item.poemTitleTOC || item.poemTitle}
+                </span>
                 <span className="toc-title-french">{item.poemTitleFrench}</span>
               </Link>
             </li>
@@ -44,7 +46,9 @@ const TableOfContents = (props) => {
         <li key={item.poemId}>
           <Link to={`/poems/${item.poemId}`}>
             <span className="toc-numeral">{item.poemNumber}</span>
-            <span className="toc-title">{item.poemTitle}</span>
+            <span className="toc-title">
+              {item.poemTitleTOC || item.poemTitle}
+            </span>
             <span className="toc-title-french">{item.poemTitleFrench}</span>
           </Link>
         </li>
@@ -53,8 +57,8 @@ const TableOfContents = (props) => {
 
     if (toc.length > 0) {
       toc.push(
-        <React.Fragment key={'afterword'}>
-          <Link to={'/afterword'}>
+        <React.Fragment key="afterword">
+          <Link to="/afterword">
             <h3 className="section-title">Afterword</h3>
           </Link>
         </React.Fragment>
