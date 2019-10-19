@@ -12,7 +12,7 @@ const Navigation = (props) => {
   const [previousPoem, setPreviousPoem] = useState({});
   const [nextPoem, setNextPoem] = useState({});
 
-  const isPoemPage = !!useRouteMatch('/poem/');
+  const isPoemPage = !!useRouteMatch('/poems/');
 
   useEffect(() => {
     const filteredPoemOrder = poemOrder.filter((poemData) => {
@@ -40,10 +40,10 @@ const Navigation = (props) => {
       const keycode = evt.keyCode;
       if (isPoemPage) {
         if (keycode === 37) {
-          history.push(`/poem/${previousPoem.id}`);
+          history.push(`/poems/${previousPoem.id}`);
         }
         if (keycode === 39) {
-          history.push(`/poem/${nextPoem.id}`);
+          history.push(`/poems/${nextPoem.id}`);
         }
       }
     };
@@ -76,14 +76,14 @@ const Navigation = (props) => {
         <ul className="next-previous-navigation">
           <li>
             {previousPoem.id && (
-              <Link to={`/poem/${previousPoem.id}`} className="previous-poem">
+              <Link to={`/poems/${previousPoem.id}`} className="previous-poem">
                 previous
               </Link>
             )}
           </li>
           <li>
             {nextPoem.id && (
-              <Link to={`/poem/${nextPoem.id}`} className="next-poem">
+              <Link to={`/poems/${nextPoem.id}`} className="next-poem">
                 next
               </Link>
             )}

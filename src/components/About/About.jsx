@@ -6,7 +6,9 @@ import './About.scss';
 const About = (props) => {
   const {} = props;
 
-  return <React.Fragment>This is the stateless Bio component.</React.Fragment>;
+  return (
+    <React.Fragment>This is the stateless About component.</React.Fragment>
+  );
 };
 
 About.propTypes = {};

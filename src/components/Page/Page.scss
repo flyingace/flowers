@@ -1,1 +1,44 @@
 @import '../../styles/constants';
+
+.page {
+  position: relative;
+  height: calc(100% - 40px);
+  margin: 0 100px 0 0;
+  background-color: #ffffff;
+  background-repeat: repeat-x;
+  background-position: bottom;
+
+  &.about {
+    background-color: rgba(253, 253, 247, 1);
+    background-image: url('../../assets/_yellow-orange50.png');
+  }
+  &.afterword {
+    background-color: #0c395d;
+    background-image: url('../../assets/whiteForBlue.png');
+  }
+
+  &.poems {
+    background-color: #fbf8fb;
+    background-image: url('../../assets/_flowers40.png');
+  }
+
+  &.toc {
+    background-color: rgba(255, 250, 235, 1);
+    background-image: url('../../assets/poppies.png');
+  }
+}
+
+.simplebar-scrollbar:before {
+  background-color: $_PURPLE;
+}
+
+/*
+background-color: rgba(253,253,247,1);
+background-image: url('assets/_yellow-orange50.png');
+*/
+
+/*
+poem background-color: rgba(rgba(253, 252, 253, 0.8));
+page background-color: #fbf8fb;
+page background-image: url('./assets/_flowers40.png');
+*/
