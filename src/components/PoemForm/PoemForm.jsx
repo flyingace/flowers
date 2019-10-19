@@ -10,6 +10,7 @@ import './PoemForm.scss';
 const PoemForm = (props) => {
   const numberField = useRef(null);
   const titleField = useRef(null);
+  const titleFieldTOC = useRef(null);
   const subTitleField = useRef(null);
   const sectionSelect = useRef(null);
   const frenchTitleField = useRef(null);
@@ -33,6 +34,7 @@ const PoemForm = (props) => {
     poemSubTitle,
     poemTitle,
     poemTitleFrench,
+    poemTitleTOC,
     updatePoem,
   } = props;
 
@@ -57,6 +59,7 @@ const PoemForm = (props) => {
       poemSubTitle: subTitleField.current.value,
       poemTitle: titleField.current.value,
       poemTitleFrench: frenchTitleField.current.value,
+      poemTitleTOC: titleFieldTOC.current.value,
     };
 
     if (!edit) {
@@ -80,6 +83,7 @@ const PoemForm = (props) => {
       sectionSelect,
       subTitleField,
       titleField,
+      titleFieldTOC,
     ].forEach((fieldRef) => {
       fieldRef.current.value = '';
     });
@@ -180,6 +184,14 @@ const PoemForm = (props) => {
           name="title"
           ref={titleField}
           defaultValue={poemTitle}
+        />
+        <label htmlFor="title-TOC">Title: TOC</label>
+        <input
+          type="text"
+          id="title-TOC"
+          name="title-TOC"
+          ref={titleFieldTOC}
+          defaultValue={poemTitleTOC}
         />
         <label htmlFor="subTitle">SubTitle</label>
         <input

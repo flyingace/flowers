@@ -14,6 +14,7 @@ const initialState = {
     poemSubTitle: '',
     poemTitle: '',
     poemTitleFrench: '',
+    poemTitleTOC: '',
   },
 };
 

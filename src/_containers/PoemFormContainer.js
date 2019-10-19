@@ -19,6 +19,7 @@ function mapStateToProps(state, ownProps) {
     poemSubTitle: state.PoemData.targetPoem.poemSubTitle,
     poemTitle: state.PoemData.targetPoem.poemTitle,
     poemTitleFrench: state.PoemData.targetPoem.poemTitleFrench,
+    poemTitleTOC: state.PoemData.targetPoem.poemTitleTOC,
   };
 }
 

@@ -10,6 +10,7 @@ export const TOCData = (store) => {
         poemSection,
         poemTitle,
         poemTitleFrench,
+        poemTitleTOC,
       } = poem;
 
       return {
@@ -19,6 +20,7 @@ export const TOCData = (store) => {
         poemSection,
         poemTitle,
         poemTitleFrench,
+        poemTitleTOC,
       };
     })
     .sort((a, b) => {
