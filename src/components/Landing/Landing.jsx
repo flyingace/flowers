@@ -12,7 +12,14 @@ export default function Landing(props) {
     }
   }, [poems, requestAllPoems]);
 
-  return <div className="landing-page" />;
+  return (
+    <div className="landing-page">
+      <img
+        src="../../../public/assets/cover@2x.png"
+        alt="Flowers of Bad cover"
+      />
+    </div>
+  );
 }
 
 Landing.propTypes = {

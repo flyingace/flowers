@@ -2,9 +2,45 @@
 
 .page .afterword {
   max-width: 800px;
-  margin: 0 auto;
-  padding: 120px 70px 80px;
+  margin: 30px auto;
+  padding: 90px 70px 70px;
   text-align: left;
   overflow-y: auto;
   background-color: rgba(255, 255, 255, 0.95);
+
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    margin: 50px 0 20px;
+
+    &.footnotes-section {
+      border-top: 1px solid black;
+      padding-top: 20px;
+      margin-top: 60px;
+    }
+  }
+
+  h3 {
+    margin: 30px 0 10px;
+  }
+
+  p {
+    margin-top: 0;
+    line-height: 1.4;
+
+    &.example {
+      margin-left: 2em;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+  }
+
+  .footnote-number {
+    text-decoration: none;
+    color: #a90000;
+  }
 }
