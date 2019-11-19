@@ -50,7 +50,14 @@ const Poem = (props) => {
       return (
         // eslint-disable-next-line react/no-array-index-key
         <React.Fragment key={`${idx}section${poemSection.sectionNumber}`}>
-          <div className="poem-section-title">{poemSection.sectionNumber}</div>
+          {poemSection.sectionNumber && (
+            <div className="poem-section-number">
+              {poemSection.sectionNumber}
+            </div>
+          )}
+          {poemSection.sectionTitle && (
+            <div className="poem-section-title">{poemSection.sectionTitle}</div>
+          )}
           <PoemBody>
             {generatePoemBody(
               poemSection.sectionBody,

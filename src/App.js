@@ -20,13 +20,13 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Route
-          path={ROUTES.LANDING}
-          exact
-          render={() => <LandingContainer />}
-        />
         <NavigationContainer />
         <Page>
+          <Route
+            path={ROUTES.LANDING}
+            exact
+            render={() => <LandingContainer />}
+          />
           <Route
             path={ROUTES.POEM}
             render={(match) => <PoemContainer {...match} />}

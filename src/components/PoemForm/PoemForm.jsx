@@ -102,11 +102,17 @@ const PoemForm = (props) => {
     const twoOrMoreSpaces = /( ){2,}/g;
     const startItalic = /(<em>)/g;
     const endItalic = /(<\/em>)/g;
+    const startSpan = /(<span>)/g;
+    const endSpan = /(<\/span>)/g;
+    const tab = /(&#9;)/g;
     return poemBodyAsArray.map((line) => {
       return line
         .replace(twoOrMoreSpaces, ' ')
         .replace(startItalic, '\u003Cem\u003E')
         .replace(endItalic, '\u003C\u002Fem\u003E')
+        .replace(startSpan, '\u003Cspan\u003E')
+        .replace(endSpan, '\u003C\u002Fspan\u003E')
+        .replace(tab, '\u00A0')
         .trim();
     });
   };

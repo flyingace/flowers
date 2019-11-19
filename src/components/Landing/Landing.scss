@@ -1,1 +1,9 @@
 @import '../../styles/constants';
+
+.landing-page {
+  height: 100%;
+  background-image: url('../../assets/cover@2x.png');
+  background-repeat: no-repeat;
+  background-position: top 60px center;
+  background-size: auto calc(100% - 120px);
+}

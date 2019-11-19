@@ -52,15 +52,30 @@
     font-size: 18px;
     text-align: left;
     font-style: italic;
+
+    em {
+      font-style: normal;
+    }
   }
 
   .poem-body {
     font-size: 22px;
 
+    .poem-section-number:first-of-type,
+    .poem-section-title:first-of-type {
+      margin-top: 1.4em;
+    }
+
+    .poem-section-number,
     .poem-section-title {
       font-size: 18px;
       font-style: italic;
-      margin-top: 1.4em;
+      margin-top: 3em;
+    }
+
+    .poem-section-number + .poem-section-title {
+      margin-top: 3px;
+      margin-bottom: 3px;
     }
 
     .poem-line {
@@ -68,6 +83,11 @@
       line-height: 1.4em;
       text-indent: -5em;
       white-space: pre-wrap;
+
+      span {
+        width: 2em;
+        display: inline-block;
+      }
     }
   }
 }
