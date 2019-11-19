@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import cover from '../../assets/cover@2x.png';
 import './Landing.scss';
 
 /* Landing */
@@ -12,14 +13,7 @@ export default function Landing(props) {
     }
   }, [poems, requestAllPoems]);
 
-  return (
-    <div className="landing-page">
-      <img
-        src="../../../public/assets/cover@2x.png"
-        alt="Flowers of Bad cover"
-      />
-    </div>
-  );
+  return <div className="landing-page"></div>;
 }
 
 Landing.propTypes = {
