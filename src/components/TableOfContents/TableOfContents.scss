@@ -60,4 +60,15 @@
       }
     }
   }
+
+  @include for-phone-only {
+    margin: 0 auto;
+    padding-left: 70px;
+    padding-right: 30px;
+
+    h2 {
+      margin: 0 0 30px -30px;
+      line-height: 1;
+    }
+  }
 }
