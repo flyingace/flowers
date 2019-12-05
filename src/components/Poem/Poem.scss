@@ -90,6 +90,33 @@
       }
     }
   }
+
+  @include for-phone-only {
+    margin: 0;
+    padding: 30px 20px;
+
+    .poem-number {
+      font-size: 16px;
+    }
+
+    .poem-title {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .poem-body {
+      font-size: 20px;
+
+      .poem-line {
+        margin-left: 1em;
+        text-indent: -1em;
+
+        span {
+          width: 1em;
+        }
+      }
+    }
+  }
 }
 
 @keyframes fadeIn {

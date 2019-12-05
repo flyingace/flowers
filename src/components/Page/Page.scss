@@ -33,4 +33,13 @@
   .simplebar-scrollbar:before {
     background-color: $_PURPLE;
   }
+
+  @include for-phone-only {
+    margin: 0;
+    background-image: none !important;
+
+    .simplebar-content {
+      height: auto;
+    }
+  }
 }
