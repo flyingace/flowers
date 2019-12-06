@@ -57,7 +57,9 @@ const Navigation = (props) => {
           <Link to={ROUTES.LANDING}>Flowers of Bad</Link>
         </li>
         <li>
-          <Link to={ROUTES.TOC}>Table of Contents</Link>
+          <Link to={ROUTES.TOC}>
+            <span className="desktop">Table of </span>Contents
+          </Link>
         </li>
         <li>
           <Link to={ROUTES.ABOUT}>About</Link>
@@ -76,14 +78,14 @@ const Navigation = (props) => {
                 to={`/poems/${previousPoem.poemId}`}
                 className="previous-poem"
               >
-                previous
+                &#8249; previous
               </Link>
             )}
           </li>
           <li>
             {nextPoem.poemId && (
               <Link to={`/poems/${nextPoem.poemId}`} className="next-poem">
-                next
+                next &#8250;
               </Link>
             )}
           </li>
