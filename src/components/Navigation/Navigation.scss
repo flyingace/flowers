@@ -60,16 +60,23 @@ nav {
 
     .previous-poem {
       text-align: left;
-      &:before {
-        content: '\2039  ';
-      }
     }
 
     .next-poem {
       text-align: right;
-      &:after {
-        content: ' \203a';
+    }
+  }
+
+  @include for-phone-only {
+    width: 100%;
+
+    .main-navigation {
+      .desktop {
+        display: none;
       }
+    }
+    .next-previous-navigation {
+      display: none;
     }
   }
 }
